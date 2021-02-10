@@ -36,6 +36,12 @@ kubectl delete vpo/nginx
 kubectl port-forward nginx 8080:80
 
 ```
+
+### Pod for debugging
+```
+kubectl run -it test image=alpine apk add -u curl
+apk add -u curl
+```
 ###  Kubernetes Services Objects
 kube-proxy is available on each pod and it manage the Load Balancing (userspace, iptables, ipvs)
 * ClusterIP: Expose into the cluster only
