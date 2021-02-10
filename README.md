@@ -37,12 +37,12 @@ kubectl port-forward nginx 8080:80
 
 ```
 ###  Kubernetes Services Objects
-
-* ClusterIP
-* ClusterIP Port-Forward
-* Cluster-IP Proxy
-* NodePort: Open the service for out of the cluster
-* LoadBalancer
+kube-proxy is available on each pod and it manage the Load Balancing (userspace, iptables, ipvs)
+* ClusterIP: Expose into the cluster only
+* ClusterIP Port-Forward: Expose into the cluster only
+* Cluster-IP Proxy: Expose into the cluster only
+* NodePort: Expose to out of the cluster
+* LoadBalancer: Integration with the provider
 
 ## Scheduling
 
