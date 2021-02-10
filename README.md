@@ -87,7 +87,7 @@ affinity:
             operator: In
             values: ["us-central1-a"]
 ```
-### taint the node as unschedulable by any pods that do not have a toleration for taint with key
+### taint the node as unschedulable by any pods that do not have a toleration for taint with key (taint eviter)
 kubectl taint nodes node1 key=value:NoSchedule
 ```
 ...
