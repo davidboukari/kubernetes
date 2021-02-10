@@ -131,7 +131,7 @@ affinity:
             operator: In
             values: [“S1”]
         topologyKey: failure-domain.beta.kubernetes.io/zone
-
+```
 ## Deployment Very important replica
 * https://cloud.google.com/kubernetes-engine/docs/how-to/horizontal-pod-autoscaling?hl=fr
 ```
@@ -200,6 +200,7 @@ spec:
         type: AverageValue
         averageValue: 100Mi
 ```
+
 Update the autoscaling
 ```
 kubectl autoscale deploy nginx --min=2 --max=10 --cpu-percent=50
