@@ -1,6 +1,18 @@
 # kubernetes
 
-# Kubernetes commands
+## Initialize a kube cluster
+* [https://github.com/davidboukari/vmware/edit/main/kubernetes/README.md](vmare tanzu-kubernetes-cluster doc)
+```bash
+yum install docker
+cd ~/vmware/kubernetes/ansible-vsphere-tanzu-kubernetes && ansible-playbook playbook.yml
+set the credentials in ~/.tkg/config.yaml
+
+tkg init --infrastructure vsphere --name my-vsphere-cluster --plan dev  --vsphere-controlplane-endpoint-ip 192.168.0.155 --deploy-tkg-on-vSphere7
+tkg get management-cluster
+kubectl config use-context my-vsphere-cluster-admin@my-vsphere-cluster
+# Scale the workers
+tkg scale cluster my-vsphere-cluster --worker-machine-count 4  --namespace tkg-system
+```
 
 ## To test commands
 * Katacoda: https://www.katacoda.com/courses/kubernetes/playground
