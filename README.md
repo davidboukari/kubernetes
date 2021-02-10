@@ -39,10 +39,41 @@ kubectl port-forward nginx 8080:80
 ###  Kubernetes Services Objects
 kube-proxy is available on each pod and it manage the Load Balancing (userspace, iptables, ipvs)
 * ClusterIP: Expose into the cluster only
+```
+cat Service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+spec:
+  selector:
+    app: MyApp
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 9376
+
+cat Pod.yaml      
+apiVersion: v1
+kind: Pod
+metadata:
+  name: vote
+  labels:
+    app: MyApp
+spec:
+  containers:
+  - name: vote
+    image: instavote/vote
+    ports:
+      - containerPort: 80
+```
+
 * ClusterIP Port-Forward: Expose into the cluster only
+
 * Cluster-IP Proxy: Expose into the cluster only
 * NodePort: Expose to out of the cluster
 * LoadBalancer: Integration with the provider
+* ExternalName: Associate to DNS name
 
 ## Scheduling
 
