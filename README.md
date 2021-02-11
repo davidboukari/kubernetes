@@ -1,5 +1,6 @@
 # kubernetes
 
+# ===========================================================================================================================
 ## Initialize a kube cluster
 * [https://github.com/davidboukari/vmware/edit/main/kubernetes/README.md](vmare-tanzu-kubernetes-cluster doc)
 ```bash
@@ -14,12 +15,18 @@ kubectl config use-context my-vsphere-cluster-admin@my-vsphere-cluster
 tkg scale cluster my-vsphere-cluster --worker-machine-count 4  --namespace tkg-system
 ```
 
+
+# ===========================================================================================================================
 ## To test commands
 * Katacoda: https://www.katacoda.com/courses/kubernetes/playground
 
+
+
+# ===========================================================================================================================
 ## Switch context
 * https://github.com/ahmetb/kubectx
 
+# ===========================================================================================================================
 ## Cluster info
 ```
 $ kubectl cluster-info
@@ -33,7 +40,7 @@ NAME                                              STATUS   ROLES    AGE   VERSIO
 vsphere-management-cluster-control-plane-zffw4    Ready    master   83m   v1.19.1+vmware.2
 vsphere-management-cluster-md-0-bcbd45f87-l9xfp   Ready    <none>   76m   v1.19.1+vmware.2
 ```
-
+# ===========================================================================================================================
 ## Basic commands for pods
 
 ### Get all pods of all namespaces
@@ -54,9 +61,11 @@ kubectl port-forward nginx 8080:80
 kubectl run -it test image=alpine 
 apk add -u curl
 ```
+# ===========================================================================================================================
 ###  Kubernetes Services Objects
 kube-proxy is available on each pod and it manage the Load Balancing (userspace, iptables, ipvs)
 
+____________________________________________________________________________________________________
 * ClusterIP: Expose a Service port into the cluster only
 ```
 cat Service.yaml
@@ -106,6 +115,7 @@ curl http://100.66.27.214:8080
 ...
 ```
 
+____________________________________________________________________________________________________
 * ClusterIP Port-Forward: Expose a Service port out of the cluster
 ```
 kubectl get po,svc
@@ -137,6 +147,7 @@ kubectl proxy
 curl  http://localhost:8001/api/v1/namespaces/default/services/
 ```
 
+____________________________________________________________________________________________________
 * NodePort: Expose Pod out of the cluster: by default 3000< NodePort <32767. It can be changed
 ```
 apiVersion: v1
@@ -178,15 +189,17 @@ spec:
     nodePort: 31200
 ```
 
+____________________________________________________________________________________________________
 * ExternalName: Associate to DNS name
 ```
 
 ```
-
+# ===========================================================================================================================
 ## Scheduling
 
 ### By label
 
+____________________________________________________________________________________________________
 #### Add a label for a node
 ```
 kubectl label  no/my-vsphere-cluster-md-0-686fc88ccd-v5lvb type=bdd
@@ -200,6 +213,7 @@ spec:
     type: bdd
 ```
 
+____________________________________________________________________________________________________
 ### By nodeAffinity
 * In, NotIn, Exists, DoesNotExist, Gt, Lt
 
@@ -226,6 +240,9 @@ affinity:
             operator: In
             values: ["us-central1-a"]
 ```
+
+
+____________________________________________________________________________________________________
 ### taint the node as unschedulable by any pods that do not have a toleration for taint with key (taint eviter)
 kubectl taint nodes node1 key=value:NoSchedule
 ```
@@ -236,6 +253,8 @@ tolerations:
   value: "value"
   effect: "NoSchedule"
 ```
+
+____________________________________________________________________________________________________
 ### resource
 ```
 ...
@@ -247,6 +266,8 @@ resources:
     memory: "128Mi"
     cpu: "500"
 ```
+
+____________________________________________________________________________________________________
 ### podAffinity
 ```
 affinity:
@@ -271,6 +292,8 @@ affinity:
             values: [“S1”]
         topologyKey: failure-domain.beta.kubernetes.io/zone
 ```
+# ===========================================================================================================================
+____________________________________________________________________________________________________
 ## Deployment Very important replica
 * https://cloud.google.com/kubernetes-engine/docs/how-to/horizontal-pod-autoscaling?hl=fr
 ```
@@ -309,7 +332,7 @@ REVISION        Change Cause
 
 kubectl scale deploy/nginx-deployment --replicas=5
 
-
+# ===========================================================================================================================
 ### HorizontalPodAutoscaler
 * https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
 
