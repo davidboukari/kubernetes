@@ -291,6 +291,27 @@ affinity:
         topologyKey: failure-domain.beta.kubernetes.io/zone
 ```
 ____________________________________________________________________________________________________
+## DaemonSet
+Use to be sure that some pod are present in each node. It is very use to install some agents (like metric agent, logs, ...)
+```
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: www
+spec:
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - name: www
+          image: nginx
+          ports:
+          - containerPort: 80
+          
+```
+
 ____________________________________________________________________________________________________
 ## Deployment Very important replica
 * https://cloud.google.com/kubernetes-engine/docs/how-to/horizontal-pod-autoscaling?hl=fr
