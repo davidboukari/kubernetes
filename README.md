@@ -345,6 +345,80 @@ spec:
 
 ```
 
+____________________________________________________________________________________________________
+* IngressController (routage rules) diff than NodePort & LoadBalancer
+
+IngressController routage by domain
+```
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: name-virtual-host-ingress
+spec:
+  rules:
+  - host: foo.bar.com
+    http:
+      paths:
+        backend:
+            serviceName: service1
+            servicePort: 80
+```
+
+* Ingress routage by pass
+```
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: name-virtual-host-ingress
+spec:
+  rules:
+  - host: foo.bar.com
+    http:
+      paths:
+      - path: /www
+        pathType: Prefix
+        backend:
+          service:
+            name: service1
+            port:
+              number: 80
+```
+
+* Ingress TLS routage
+```
+apiVersion: v1
+data:
+  tls.crt: base64 encoded cert
+  tls.key: base64 encoded key
+kind: Secret
+metadata:
+  name: testsecret-tls
+  namespace: default
+type: kubernetes.io/tls
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tls-example-ingress
+spec:
+  tls:
+  - hosts:
+      - https-example.foo.com
+    secretName: testsecret-tls
+  rules:
+  - host: https-example.foo.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: service1
+            port:
+              number: 80
+```
+
+
 
 
 ____________________________________________________________________________________________________
