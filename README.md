@@ -192,6 +192,14 @@ ________________________________________________________________________________
 ```
 
 ```
+
+____________________________________________________________________________________________________
+* taint untaint if already taint
+```
+kubectl taint node my-vsphere-cluster-control-plane-nwcwx node-role.kubernetes.io/master:NoSchedule-node/my-vsphere-cluster-control-plane-nwcwx
+```
+
+
 ____________________________________________________________________________________________________
 ## Scheduling
 
@@ -311,6 +319,33 @@ spec:
           - containerPort: 80
           
 ```
+
+____________________________________________________________________________________________________
+* Job - CronJob minute (0 - 59) hour (0 - 23) day of the month (1 - 31) month (1 - 12) day of the week (0 - 6) 
+```
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: hello
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: hello
+            image: busybox
+            imagePullPolicy: IfNotPresent
+            args:
+            - /bin/sh
+            - -c
+            - date; echo Hello from the Kubernetes cluster
+          restartPolicy: OnFailure
+
+```
+
+
 
 ____________________________________________________________________________________________________
 ## Deployment Very important replica
