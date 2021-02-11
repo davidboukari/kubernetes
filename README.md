@@ -199,6 +199,40 @@ ________________________________________________________________________________
 kubectl taint node my-vsphere-cluster-control-plane-nwcwx node-role.kubernetes.io/master:NoSchedule-node/my-vsphere-cluster-control-plane-nwcwx
 ```
 
+____________________________________________________________________________________________________
+ConfigMap
+```
+# From file
+kubectl create configmap nginx-config --from-file=./nginx.conf
+
+# From env file
+kubectl create configmap nginx-env --from-env-file=./nginx.env
+
+# From literral
+kubectl create configmap nginx-litteral --from-literal=DOMAIN=thedomain.com --from-literal=HOSTNAME=myhostname
+
+kubectl get cm nginx-config -o yaml
+```
+
+Use a configMap in a Pod
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod
+spec:
+  containers:
+  - name: mypod
+    image: redis
+    volumeMounts:
+    - name: foo
+      mountPath: "/etc/foo"
+      readOnly: true
+  volumes:
+  - name: foo
+    configMap:
+      name: myconfigmap
+
 
 ____________________________________________________________________________________________________
 ## Scheduling
