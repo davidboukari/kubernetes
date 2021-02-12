@@ -609,5 +609,8 @@ helm repo add stable https://charts.helm.sh/stable
 # See helm app repo hub.helm.sh
 helm repo add hashicorp https://helm.releases.hashicorp.com
 helm install my-consul hashicorp/consul --version 0.29.0
+
+# Create new project
+helm create myfirtapp
 ```
 
