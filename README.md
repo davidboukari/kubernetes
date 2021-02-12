@@ -599,6 +599,10 @@ spec:
 ```
 kubectl autoscale deploy nginx --min=2 --max=10 --cpu-percent=50
 ```
+____________________________________________________________________________________________________
+* Operators Resource which manage deployment, configuration, update, scaling, backup, recovery
+** Operator = Controller + Custom Resource
+** https://github.com/operator-framework/awesome-operators
 
 ____________________________________________________________________________________________________
 * Manage kubernetes packages
