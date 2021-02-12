@@ -214,7 +214,9 @@ kubectl create configmap nginx-litteral --from-literal=DOMAIN=thedomain.com --fr
 kubectl get cm nginx-config -o yaml
 ```
 
-Use a configMap in a Pod
+____________________________________________________________________________________________________
+
+* Use a configMap in a Pod
 ```
 apiVersion: v1
 kind: Pod
@@ -232,6 +234,75 @@ spec:
   - name: foo
     configMap:
       name: myconfigmap
+```
+
+____________________________________________________________________________________________________
+* Secret
+generic
+```
+kubectl create secret generic dev-db-secret --from-literal=username=devuser --from-literal=password='S!B\*d$zDsb'
+
+echo -n 'admin' > ./username.txt
+echo -n '1f2d1e2e67df' > ./password.txt
+kubectl create secret generic db-user-pass --from-file=./username.txt --from-file=./password.txt
+echo YWRtaW4=|base64 -d
+admin
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod
+spec:
+  containers:
+  - name: mypod
+    image: redis
+    volumeMounts:
+    - name: foo
+      mountPath: "/etc/foo"
+      readOnly: true
+  volumes:
+  - name: foo
+    secret:
+      secretName: db-user-pass
+
+```
+* docker-registry
+```
+kubectl create secret docker-registry regcred --docker-server=<your-registry-server> --docker-username=<your-name> --docker-password=<your-pword> --docker-email=<your-email>
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: private-reg
+spec:
+  containers:
+  - name: private-reg-container
+    image: <your-private-image>
+  imagePullSecrets:
+  - name: regcred
+
+```
+
+* TLS
+```
+kubectl create secret tls domain-pki --cert mycert.cert --key mykey.key
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod
+spec:
+  containers:
+  - name: mypod
+    image: redis
+    volumeMounts:
+    - name: foo
+      mountPath: "/etc/foo"
+      readOnly: true
+  volumes:
+  - name: tls
+    secret:
+      secretName: domain-pki
 ```
 
 ____________________________________________________________________________________________________
@@ -524,7 +595,19 @@ spec:
         averageValue: 100Mi
 ```
 
-Update the autoscaling
+* Update the autoscaling
 ```
 kubectl autoscale deploy nginx --min=2 --max=10 --cpu-percent=50
 ```
+
+____________________________________________________________________________________________________
+* Manage kubernetes packages
+https://github.com/helm/helm/releases
+```
+# Install repo
+helm repo add stable https://charts.helm.sh/stable
+# See helm app repo hub.helm.sh
+helm repo add hashicorp https://helm.releases.hashicorp.com
+helm install my-consul hashicorp/consul --version 0.29.0
+```
+
