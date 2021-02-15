@@ -1,6 +1,12 @@
 # kubernetes
 
 ____________________________________________________________________________________________________
+## Install bash completion:w
+iptable -F
+yum install bash-completion
+echo 'source <(kubectl completion bash)' >>~/.bashrc
+
+____________________________________________________________________________________________________
 ## Initialize a kube cluster
 * [https://github.com/davidboukari/vmware/edit/main/kubernetes/README.md](vmare-tanzu-kubernetes-cluster doc)
 ```bash
