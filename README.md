@@ -1,8 +1,11 @@
 # kubernetes
 
 ____________________________________________________________________________________________________
-## Install bash completion:w
+## Lazy mode firewalling
 iptable -F
+
+____________________________________________________________________________________________________
+## Install bash completion
 yum install bash-completion
 echo 'source <(kubectl completion bash)' >>~/.bashrc
 
