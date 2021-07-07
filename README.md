@@ -11,7 +11,7 @@ echo 'source <(kubectl completion bash)' >>~/.bashrc
 
 ____________________________________________________________________________________________________
 ## Initialize a kube cluster
-* [https://github.com/davidboukari/vmware/edit/main/kubernetes/README.md](vmare-tanzu-kubernetes-cluster doc)
+* https://github.com/davidboukari/vmware/edit/main/kubernetes/README.md (vmare-tanzu-kubernetes-cluster doc)
 ```bash
 yum install docker
 cd ~/vmware/kubernetes/ansible-vsphere-tanzu-kubernetes && ansible-playbook playbook.yml
