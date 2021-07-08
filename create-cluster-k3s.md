@@ -28,7 +28,7 @@ yum install bash-completion
 echo 'source <(kubectl completion bash)' >>~/.bashrc
 
 ## on the source code server
-scp user@IPCLUSTER:/etc/rancher/k3s/k3s.yaml  ./k3s.yaml;tmp
+scp user@IPCLUSTER:/etc/rancher/k3s/k3s.yaml  ./k3s.yaml.tmp
 export IPNODE=192.168.0.xxx
 # Change the IP  https://127.0.0.1:6443 => Open the port 6443 in TCP in your firewall and redirect to the cluster machine
 cat k3s.yaml.tmp |sed "s/127.0.0.1/$IPNODE/g" > k3s.yaml
