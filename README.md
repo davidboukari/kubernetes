@@ -643,6 +643,19 @@ metadata:
   name: {{ template "redis.fullname" . }}-metrics
   labels:
     app: {{ template "redis.name" . }}
+    
 ```
+# Deploy wordpress
+
+```
+curl -O https://github.com/eazytrainingfr/kubernetes-training/blob/master/tp-5/values.yml
+helm install stable/worpress --name wordpress -f values.yml
+kubectl get po
+kubectl get no
+kubectl get svc
+```
+
+
+
 
 
