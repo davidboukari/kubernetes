@@ -630,7 +630,10 @@ helm install my-consul hashicorp/consul --version 0.29.0
 helm create myfirtapp
 ```
 
-## helm
+## helm V2
+It use the daemon tiler in the cluster
+The generic repo are used
+
 Ex: redis
 https://github.com/helm/charts/tree/master/stable/redis
 ```
@@ -655,7 +658,27 @@ kubectl get no
 kubectl get svc
 ```
 
+## helm V3
+tiler has been removed. The command are in client side.
+We should add the repositories
 
+``` 
+helm repo add bitnami https://charts.bitname.com/bitnami
+helm install worpress bitnami/wordpress -h http:://.../tp-5/values.yml
+kubectl get svc 
 
+# Tp installation
+# Installation
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+chmod 700 get_helm.sh
+yum install openssl -y
+./get_helm.sh
+helm version
 
+# Déploiement Wordpress
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm install wordpress bitnami/wordpress -f https://raw.githubusercontent.com/eazytrainingfr/kubernetes-training/master/tp-5/values.yml
 
+# Lien utile
+https://devopscube.com/install-configure-helm-kubernetes/
+```
