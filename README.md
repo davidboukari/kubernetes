@@ -9,8 +9,10 @@ iptable -F
 
 ____________________________________________________________________________________________________
 ## Install bash completion
+```
 yum install bash-completion
 echo 'source <(kubectl completion bash)' >>~/.bashrc
+```
 
 ____________________________________________________________________________________________________
 ## Initialize a kube cluster
