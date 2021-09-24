@@ -630,3 +630,9 @@ helm install my-consul hashicorp/consul --version 0.29.0
 helm create myfirtapp
 ```
 
+helm
+```
+helm install stable/redis --name my-redis --set cluset.slaveCount=2
+```
+
+
