@@ -79,6 +79,7 @@ kube-proxy is available on each pod and it manage the Load Balancing (userspace,
 
 ____________________________________________________________________________________________________
 * ClusterIP: Expose a Service port into the cluster only
+
 ```
 cat Service.yaml
 apiVersion: v1
