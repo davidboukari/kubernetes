@@ -81,7 +81,15 @@ node/my-vsphere-cluster-md-0-686fc88ccd-d9g68 labeled
 node/my-vsphere-cluster-md-0-686fc88ccd-z4vlw labeled
 ```
 
-
+## Show labels
+```
+root@localhost dev]# kubectl get nodes --show-labels
+NAME                                       STATUS   ROLES    AGE   VERSION            LABELS
+my-vsphere-cluster-control-plane-jddvh     Ready    master   11h   v1.19.1+vmware.2   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/instance-type=vsphere-vm.cpu-2.mem-4gb.os-photon,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=my-vsphere-cluster-control-plane-jddvh,kubernetes.io/os=linux,node-role.kubernetes.io/master=
+my-vsphere-cluster-md-0-686fc88ccd-582bm   Ready    <none>   11h   v1.19.1+vmware.2   az=paris.fr,beta.kubernetes.io/arch=amd64,beta.kubernetes.io/instance-type=vsphere-vm.cpu-2.mem-4gb.os-photon,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=my-vsphere-cluster-md-0-686fc88ccd-582bm,kubernetes.io/os=linux
+my-vsphere-cluster-md-0-686fc88ccd-d9g68   Ready    <none>   11h   v1.19.1+vmware.2   az=dijon.fr,beta.kubernetes.io/arch=amd64,beta.kubernetes.io/instance-type=vsphere-vm.cpu-2.mem-4gb.os-photon,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=my-vsphere-cluster-md-0-686fc88ccd-d9g68,kubernetes.io/os=linux
+my-vsphere-cluster-md-0-686fc88ccd-z4vlw   Ready    <none>   11h   v1.19.1+vmware.2   az=grenoble.fr,beta.kubernetes.io/arch=amd64,beta.kubernetes.io/instance-type=vsphere-vm.cpu-2.mem-4gb.os-photon,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=my-vsphere-cluster-md-0-686fc88ccd-z4vlw,kubernetes.io/os=linux
+```
 
 ## Nodes Managements = master & Workers = none
 ```bash
