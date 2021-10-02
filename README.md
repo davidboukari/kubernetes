@@ -32,7 +32,9 @@ tkg scale cluster my-vsphere-cluster --worker-machine-count 4  --namespace tkg-s
 ## Get all objects of a namespace
 ```
 kubectl -n dev get $(kubectl api-resources --namespaced=true --no-headers -o name | egrep -v 'events|nodes' | paste -s -d, - ) --no-headers
+```
 
+```
 kubectl -n dev api-resources --verbs=list -o name
 ```
 
