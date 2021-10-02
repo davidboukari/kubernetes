@@ -73,28 +73,24 @@ KubeDNS is running at https://192.168.0.155:6443/api/v1/namespaces/kube-system/s
 ```
 kubectl cluster-info dump
 ```
+## node Labels
+```
+kubectl get nodes --show-labels
+
+kubectl label nodes my-vsphere-cluster-md-0-686fc88ccd-582bm az=paris-fr
+kubectl label nodes my-vsphere-cluster-md-0-686fc88ccd-d9g68 az=dijon.fr
+kubectl label nodes my-vsphere-cluster-md-0-686fc88ccd-z4vlw az=grenoble.fr
+
+kubectl label node my-vsphere-cluster-md-0-686fc88ccd-582bm az-
+kubectl label node my-vsphere-cluster-md-0-686fc88ccd-d9g68 az-
+kubectl label node my-vsphere-cluster-md-0-686fc88ccd-z4vlw
+```
 
 ## Set node label
 ```
 kubectl label nodes <your-node-name> disktype=ssd
 ```
 
-```
-[root@localhost dev]# kubectl get node
-NAME                                       STATUS   ROLES    AGE   VERSION
-my-vsphere-cluster-control-plane-jddvh     Ready    master   11h   v1.19.1+vmware.2
-my-vsphere-cluster-md-0-686fc88ccd-582bm   Ready    <none>   11h   v1.19.1+vmware.2
-my-vsphere-cluster-md-0-686fc88ccd-d9g68   Ready    <none>   11h   v1.19.1+vmware.2
-my-vsphere-cluster-md-0-686fc88ccd-z4vlw   Ready    <none>   11h   v1.19.1+vmware.2
-[root@localhost dev]# kubectl label nodes my-vsphere-cluster-md-0-686fc88ccd-582bm az=paris.fr
-node/my-vsphere-cluster-md-0-686fc88ccd-582bm labeled
-[root@localhost dev]# kubectl label nodes my-vsphere-cluster-md-0-686fc88ccd-d9g68 az=dijon.fr
-
-node/my-vsphere-cluster-md-0-686fc88ccd-d9g68 labeled
-[root@localhost dev]#
-[root@localhost dev]# kubectl label nodes my-vsphere-cluster-md-0-686fc88ccd-z4vlw az=grenoble.fr
-node/my-vsphere-cluster-md-0-686fc88ccd-z4vlw labeled
-```
 
 ## Show labels
 ```
@@ -105,6 +101,12 @@ my-vsphere-cluster-md-0-686fc88ccd-582bm   Ready    <none>   11h   v1.19.1+vmwar
 my-vsphere-cluster-md-0-686fc88ccd-d9g68   Ready    <none>   11h   v1.19.1+vmware.2   az=dijon.fr,beta.kubernetes.io/arch=amd64,beta.kubernetes.io/instance-type=vsphere-vm.cpu-2.mem-4gb.os-photon,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=my-vsphere-cluster-md-0-686fc88ccd-d9g68,kubernetes.io/os=linux
 my-vsphere-cluster-md-0-686fc88ccd-z4vlw   Ready    <none>   11h   v1.19.1+vmware.2   az=grenoble.fr,beta.kubernetes.io/arch=amd64,beta.kubernetes.io/instance-type=vsphere-vm.cpu-2.mem-4gb.os-photon,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=my-vsphere-cluster-md-0-686fc88ccd-z4vlw,kubernetes.io/os=linux
 ```
+
+## delete label node
+``` 
+kubectl label node <nodename> <labelname>-
+```
+
 
 ## Nodes Managements = master & Workers = none
 ```bash
