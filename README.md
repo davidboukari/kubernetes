@@ -2,7 +2,7 @@
 
 # create a K3s cluster
 * https://github.com/davidboukari/kubernetes/blob/main/create-cluster-k3s.md
-* 
+
 ____________________________________________________________________________________________________
 ## Lazy mode firewalling
 iptable -F
