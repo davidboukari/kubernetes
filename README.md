@@ -78,12 +78,12 @@ kubectl cluster-info dump
 kubectl get nodes --show-labels
 
 kubectl label nodes my-vsphere-cluster-md-0-686fc88ccd-582bm az=paris-fr
-kubectl label nodes my-vsphere-cluster-md-0-686fc88ccd-d9g68 az=dijon.fr
-kubectl label nodes my-vsphere-cluster-md-0-686fc88ccd-z4vlw az=grenoble.fr
+kubectl label nodes my-vsphere-cluster-md-0-686fc88ccd-d9g68 az=dijon-fr
+kubectl label nodes my-vsphere-cluster-md-0-686fc88ccd-z4vlw az=grenoble-fr
 
 kubectl label node my-vsphere-cluster-md-0-686fc88ccd-582bm az-
 kubectl label node my-vsphere-cluster-md-0-686fc88ccd-d9g68 az-
-kubectl label node my-vsphere-cluster-md-0-686fc88ccd-z4vlw
+kubectl label node my-vsphere-cluster-md-0-686fc88ccd-z4vlw az-
 ```
 
 ## Set node label
