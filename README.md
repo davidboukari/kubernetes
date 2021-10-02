@@ -54,6 +54,12 @@ $ kubectl cluster-info
 Kubernetes master is running at https://192.168.0.155:6443
 KubeDNS is running at https://192.168.0.155:6443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
 ```
+
+```
+kubectl cluster-info dump
+```
+
+
 ## Nodes Managements = master & Workers = none
 ```bash
 $ kubectl get nodes
