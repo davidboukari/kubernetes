@@ -29,6 +29,13 @@ kubectl config use-context my-vsphere-cluster-admin@my-vsphere-cluster
 tkg scale cluster my-vsphere-cluster --worker-machine-count 4  --namespace tkg-system
 ```
 
+## Get all objects of a namespace
+```
+kubectl -n dev get $(kubectl api-resources --namespaced=true --no-headers -o name | egrep -v 'events|nodes' | paste -s -d, - ) --no-headers
+
+kubectl -n dev api-resources --verbs=list -o name
+```
+
 ____________________________________________________________________________________________________
 ## To test commands
 * Katacoda: https://www.katacoda.com/courses/kubernetes/playground
@@ -685,3 +692,5 @@ helm install wordpress bitnami/wordpress -f https://raw.githubusercontent.com/ea
 # Lien utile
 https://devopscube.com/install-configure-helm-kubernetes/
 ```
+
+
