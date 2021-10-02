@@ -38,6 +38,21 @@ kubectl -n dev get $(kubectl api-resources --namespaced=true --no-headers -o nam
 kubectl -n dev api-resources --verbs=list -o name
 ```
 
+## Shortcut
+```
+    Namespaces (Alias : ns) 
+    Pods (Alias : po) 
+    Secret (Pas d’alias…)
+    Configmaps (Alias : cm) 
+    PersistentVolumeClaim (Alias : pvc) 
+    Persistentvolumes (Alias : pv) 
+    ReplicaSet (Alias : ns) 
+    Deployments (Alias : deploy) 
+    Ingress (Alias : ing) 
+    Services (Alias : svc) 
+```
+
+
 ____________________________________________________________________________________________________
 ## To test commands
 * Katacoda: https://www.katacoda.com/courses/kubernetes/playground
