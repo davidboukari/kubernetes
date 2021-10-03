@@ -37,6 +37,9 @@ You can now create your first workload cluster by running the following:
   tkg create cluster [name] --kubernetes-version=[version] --plan=[plan]
 ...
 
+
+tkg create cluster my-vsphere-cluster --plan dev --vsphere-controlplane-endpoint-ip 192.168.0.188  --size small -v 200
+
 tkg get management-cluster
 kubectl config use-context my-vsphere-cluster-admin@my-vsphere-cluster
 # Scale the workers
