@@ -20,7 +20,7 @@ ________________________________________________________________________________
 ```bash
 yum install docker
 cd ~/vmware/kubernetes/ansible-vsphere-tanzu-kubernetes && ansible-playbook playbook.yml
-set the credentials in ~/.tkg/config.yaml
+set the credentials (VSPHERE_USERNAME & VSPHERE_PASSWORD) in ~/.tkg/config.yaml
 
 tkg init --infrastructure vsphere --name my-vsphere-cluster --plan dev  --vsphere-controlplane-endpoint-ip 192.168.0.155 --deploy-tkg-on-vSphere7
 tkg get management-cluster
