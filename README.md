@@ -24,6 +24,19 @@ set the credentials (VSPHERE_USERNAME & VSPHERE_PASSWORD) in ~/.tkg/config.yaml
 
 #tkg init --infrastructure vsphere --name my-vsphere-cluster --plan dev  --vsphere-controlplane-endpoint-ip 192.168.0.155 --deploy-tkg-on-vSphere7
 tkg init --infrastructure vsphere --name my-vsphere-cluster --plan dev  --vsphere-controlplane-endpoint-ip 192.168.0.155 --deploy-tkg-on-vSphere7 --size small -v 200
+...
+...
+Context set for management cluster my-vsphere-cluster as 'my-vsphere-cluster-admin@my-vsphere-cluster'.
+Deleting kind cluster: tkg-kind-c5cpt0mrgda7j843p6m0
+
+Management cluster created!
+
+
+You can now create your first workload cluster by running the following:
+
+  tkg create cluster [name] --kubernetes-version=[version] --plan=[plan]
+...
+
 tkg get management-cluster
 kubectl config use-context my-vsphere-cluster-admin@my-vsphere-cluster
 # Scale the workers
