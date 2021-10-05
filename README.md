@@ -807,4 +807,24 @@ Caution !!!!!!!!!!
 Name	Old Location	New Location
 stable	https://kubernetes-charts.storage.googleapis.com => https://charts.helm.sh/stable
 incubator	https://kubernetes-charts-incubator.storage.googleapis.com	=> https://charts.helm.sh/incubator
+
+
+
+helm  install nginx-deployment-dijon-fr  --namespace dev --dry-run --debug . -f values-dijon-fr.yaml
+
+
+# Use a custom value file values-dijon-fr.yaml
+helm  install nginx-deployment-dijon-fr  --namespace dev  . -f values-dijon-fr.yaml --dry-run --debug
+helm  install nginx-deployment-dijon-fr  --namespace dev  . -f values-dijon-fr.yaml
+
+helm list --namespace dev
+NAME                     	NAMESPACE	REVISION	UPDATED                                 	STATUS  	CHART        	APP VERSION
+nginx-deployment-dijon-fr	dev      	1       	2021-10-05 15:31:48.026187109 +0200 CEST	deployed	mynginx-0.1.0	1.16.0
+
+helm uninstall --namespace dev  nginx-deployment-dijon-fr
+release "nginx-deployment-dijon-fr" uninstalled
 ```
+
+
+
+
