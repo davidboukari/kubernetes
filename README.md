@@ -20,9 +20,26 @@ ________________________________________________________________________________
 ```bash
 yum install docker
 cd ~/vmware/kubernetes/ansible-vsphere-tanzu-kubernetes && ansible-playbook playbook.yml
-set the credentials in ~/.tkg/config.yaml
+set the credentials (VSPHERE_USERNAME & VSPHERE_PASSWORD) in ~/.tkg/config.yaml
 
-tkg init --infrastructure vsphere --name my-vsphere-cluster --plan dev  --vsphere-controlplane-endpoint-ip 192.168.0.155 --deploy-tkg-on-vSphere7
+#tkg init --infrastructure vsphere --name my-vsphere-cluster --plan dev  --vsphere-controlplane-endpoint-ip 192.168.0.155 --deploy-tkg-on-vSphere7
+tkg init --infrastructure vsphere --name my-vsphere-cluster --plan dev  --vsphere-controlplane-endpoint-ip 192.168.0.155 --deploy-tkg-on-vSphere7 --size small -v 200
+...
+...
+Context set for management cluster my-vsphere-cluster as 'my-vsphere-cluster-admin@my-vsphere-cluster'.
+Deleting kind cluster: tkg-kind-c5cpt0mrgda7j843p6m0
+
+Management cluster created!
+
+
+You can now create your first workload cluster by running the following:
+
+  tkg create cluster [name] --kubernetes-version=[version] --plan=[plan]
+...
+
+
+tkg create cluster my-vsphere-cluster --plan dev --vsphere-controlplane-endpoint-ip 192.168.0.188  --size small -v 200
+
 tkg get management-cluster
 kubectl config use-context my-vsphere-cluster-admin@my-vsphere-cluster
 # Scale the workers
@@ -748,5 +765,66 @@ helm install wordpress bitnami/wordpress -f https://raw.githubusercontent.com/ea
 # Lien utile
 https://devopscube.com/install-configure-helm-kubernetes/
 ```
+
+## HELM
+```
+# Tp installation
+# Installation
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+chmod 700 get_helm.sh
+yum install openssl -y
+./get_helm.sh
+helm version
+
+
+helm create mychart
+helm install mychart --dry-run --debug ./mychart
+helm install mychart --dry-run --debug ./mychart --set service.type=NodePort
+helm lint mychart
+```
+
+### create requirements.yaml for check dep
+vim requirements.yaml
+```
+dependencies:
+  - name: mariadb
+    version: 0.6.0
+    repository: https://kubernetes-charts.storage.googleapis.com
+
+
+
+```
+
+
+```
+helm dep update ./chart
+helm package mychart
+helm install --name mynewinstall mychart-...tgz --set service.type=NodePort
+helm serve
+
+
+Caution !!!!!!!!!!
+Name	Old Location	New Location
+stable	https://kubernetes-charts.storage.googleapis.com => https://charts.helm.sh/stable
+incubator	https://kubernetes-charts-incubator.storage.googleapis.com	=> https://charts.helm.sh/incubator
+
+
+
+helm  install nginx-deployment-dijon-fr  --namespace dev --dry-run --debug . -f values-dijon-fr.yaml
+
+
+# Use a custom value file values-dijon-fr.yaml
+helm  install nginx-deployment-dijon-fr  --namespace dev  . -f values-dijon-fr.yaml --dry-run --debug
+helm  install nginx-deployment-dijon-fr  --namespace dev  . -f values-dijon-fr.yaml
+
+helm list --namespace dev
+NAME                     	NAMESPACE	REVISION	UPDATED                                 	STATUS  	CHART        	APP VERSION
+nginx-deployment-dijon-fr	dev      	1       	2021-10-05 15:31:48.026187109 +0200 CEST	deployed	mynginx-0.1.0	1.16.0
+
+helm uninstall --namespace dev  nginx-deployment-dijon-fr
+release "nginx-deployment-dijon-fr" uninstalled
+```
+
+
 
 
