@@ -766,4 +766,19 @@ helm install wordpress bitnami/wordpress -f https://raw.githubusercontent.com/ea
 https://devopscube.com/install-configure-helm-kubernetes/
 ```
 
+## HELM
+```
+# Tp installation
+# Installation
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+chmod 700 get_helm.sh
+yum install openssl -y
+./get_helm.sh
+helm version
 
+
+helm create myapp
+helm install myapp --dry-run --debug ./myapp/
+
+
+```
