@@ -777,8 +777,34 @@ yum install openssl -y
 helm version
 
 
-helm create myapp
-helm install myapp --dry-run --debug ./myapp/
+helm create mychart
+helm install mychart --dry-run --debug ./mychart
+helm install mychart --dry-run --debug ./mychart --set service.type=NodePort
+helm lint mychart
+```
+
+### create requirements.yaml for check dep
+vim requirements.yaml
+```
+dependencies:
+  - name: mariadb
+    version: 0.6.0
+    repository: https://kubernetes-charts.storage.googleapis.com
 
 
+
+```
+
+
+```
+helm dep update ./chart
+helm package mychart
+helm install --name mynewinstall mychart-...tgz --set service.type=NodePort
+helm serve
+
+
+Caution !!!!!!!!!!
+Name	Old Location	New Location
+stable	https://kubernetes-charts.storage.googleapis.com => https://charts.helm.sh/stable
+incubator	https://kubernetes-charts-incubator.storage.googleapis.com	=> https://charts.helm.sh/incubator
 ```
