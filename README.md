@@ -69,7 +69,15 @@ kubectl -n dev api-resources --verbs=list -o name
     Services (Alias : svc) 
 ```
 
+## Create a secret for the
+* https://kubernetes.io/fr/docs/tasks/configure-pod-container/pull-image-private-registry/
 
+```
+kubectl -n dev create secret docker-registry regcred --docker-server=https://index.docker.io/v1/ --docker-username=myuser --docker-password=mypasswd --docker-email=mymail
+kubectl get secret regcred --output=yaml^C
+
+kubectl -n dev get secret regcred --output="jsonpath={.data.\.dockerconfigjson}" | base64 --decode
+```
 ____________________________________________________________________________________________________
 ## To test commands
 * Katacoda: https://www.katacoda.com/courses/kubernetes/playground
