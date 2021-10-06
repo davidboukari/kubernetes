@@ -69,7 +69,15 @@ kubectl -n dev api-resources --verbs=list -o name
     Services (Alias : svc) 
 ```
 
+## Create a secret for the
+* https://kubernetes.io/fr/docs/tasks/configure-pod-container/pull-image-private-registry/
 
+```
+kubectl -n dev create secret docker-registry regcred --docker-server=https://index.docker.io/v1/ --docker-username=myuser --docker-password=mypasswd --docker-email=mymail
+kubectl get secret regcred --output=yaml^C
+
+kubectl -n dev get secret regcred --output="jsonpath={.data.\.dockerconfigjson}" | base64 --decode
+```
 ____________________________________________________________________________________________________
 ## To test commands
 * Katacoda: https://www.katacoda.com/courses/kubernetes/playground
@@ -808,10 +816,7 @@ Name	Old Location	New Location
 stable	https://kubernetes-charts.storage.googleapis.com => https://charts.helm.sh/stable
 incubator	https://kubernetes-charts-incubator.storage.googleapis.com	=> https://charts.helm.sh/incubator
 
-
-
 helm  install nginx-deployment-dijon-fr  --namespace dev --dry-run --debug . -f values-dijon-fr.yaml
-
 
 # Use a custom value file values-dijon-fr.yaml
 helm  install nginx-deployment-dijon-fr  --namespace dev  . -f values-dijon-fr.yaml --dry-run --debug
@@ -823,6 +828,19 @@ nginx-deployment-dijon-fr	dev      	1       	2021-10-05 15:31:48.026187109 +0200
 
 helm uninstall --namespace dev  nginx-deployment-dijon-fr
 release "nginx-deployment-dijon-fr" uninstalled
+
+
+$ helm status --namespace dev nginx-deployment-dijon-fr
+NAME: nginx-deployment-dijon-fr
+LAST DEPLOYED: Tue Oct  5 15:36:00 2021
+NAMESPACE: dev
+STATUS: deployed
+REVISION: 1
+NOTES:
+1. Get the application URL by running these commands:
+  export NODE_PORT=$(kubectl get --namespace dev -o jsonpath="{.spec.ports[0].nodePort}" services nginx-deployment-dijon-fr-mynginx)
+  export NODE_IP=$(kubectl get nodes --namespace dev -o jsonpath="{.items[0].status.addresses[0].address}")
+  echo http://$NODE_IP:$NODE_PORT
 ```
 
 
