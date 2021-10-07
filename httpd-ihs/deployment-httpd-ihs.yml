@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpd-ihs-dijon-fr
+  labels:
+    app: httpd-ihs
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: httpd-ihs
+  template:
+    metadata:
+      labels:
+        app: httpd-ihs
+    spec:
+      containers:
+      - name: httpd-ihs-dijon-fr
+        image: davbou/httpd-ihs:0.1
+        ports:
+        - containerPort: 80
+        - containerPort: 443
+      imagePullSecrets:
+      - name: regcred

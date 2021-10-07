@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: httpd-ihs-dijon-fr
+  labels:
+    app: httpd-ihs
+spec:
+  containers:
+  - name: httpd-ihs-dijon-fr
+    image: davbou/httpd-ihs:0.1
+    ports:
+      - containerPort: 80
+      - containerPort: 443
+    env:
+      - name: APP_COLOR
+        value: blue
+  imagePullSecrets:
+  - name: regcred
+

@@ -40,6 +40,10 @@ securityContext: {}
 service:
   type: NodePort
   port: 443
+  targetPort: 443
+  protocol: TCP
+
+
 
 ingress:
   enabled: false
