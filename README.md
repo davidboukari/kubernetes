@@ -116,6 +116,10 @@ kubectl label node my-vsphere-cluster-md-0-686fc88ccd-z4vlw az-
 kubectl label nodes <your-node-name> disktype=ssd
 ```
 
+## Dump yaml 
+```
+kubectl -n dev get po httpd-ihs-dijon-fr-7968964766-2wpqw -o yaml
+```
 
 ## Show labels
 ```
