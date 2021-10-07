@@ -132,6 +132,10 @@ my-vsphere-cluster-md-0-686fc88ccd-z4vlw   Ready    <none>   11h   v1.19.1+vmwar
 kubectl label node <nodename> <labelname>-
 ```
 
+## Get a terminal
+```
+kubectl -n dev1 exec -it httpd-ihs-dijon-fr-b5677ffd4-vn9md -- /bin/bash
+```
 
 ## Nodes Managements = master & Workers = none
 ```bash
