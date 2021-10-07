@@ -10,7 +10,7 @@ Login Succeeded
 ## Create a secret for the registry
 ```
 kubectl -n dev create secret docker-registry regcred --docker-server=https://index.docker.io/v1/ --docker-username=myuser --docker-password=mypasswd --docker-email=mymail
-kubectl get secret regcred --output=yaml^C
+kubectl get secret regcred --output=yaml
 
 kubectl -n dev get secret regcred --output="jsonpath={.data.\.dockerconfigjson}" | base64 --decode
 ```
