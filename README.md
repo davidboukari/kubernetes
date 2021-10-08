@@ -821,6 +821,15 @@ $ helm search repo vault
 NAME           	CHART VERSION	APP VERSION	DESCRIPTION
 hashicorp/vault	0.16.1       	1.8.3      	Official HashiCorp Vault Chart
 
+$ helm pull hashicorp/vault
+$ ls vault-0.16.1.tgz
+vault-0.16.1.tgz
+
+
+$ helm search repo vault
+NAME           	CHART VERSION	APP VERSION	DESCRIPTION
+hashicorp/vault	0.16.1       	1.8.3      	Official HashiCorp Vault Chart
+
 $ helm search hub vault
 URL                                               	CHART VERSION	APP VERSION	DESCRIPTION
 https://artifacthub.io/packages/helm/wenerme/vault	0.16.1       	1.8.3      	Official HashiCorp Vault Chart
