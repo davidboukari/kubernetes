@@ -46,6 +46,21 @@ kubectl config use-context my-vsphere-cluster-admin@my-vsphere-cluster
 tkg scale cluster my-vsphere-cluster --worker-machine-count 4  --namespace tkg-system
 ```
 
+## Namespace
+```
+kubectl config get-contexts
+CURRENT   NAME       CLUSTER    AUTHINFO   NAMESPACE
+*         minikube   minikube   minikube   default
+
+kubectl config set-context --current --namespace=dev
+Context "minikube" modified.
+
+kubectl config get-contexts
+CURRENT   NAME       CLUSTER    AUTHINFO   NAMESPACE
+*         minikube   minikube   minikube   dev
+```
+
+
 ## Get all objects of a namespace
 ```
 kubectl -n dev get $(kubectl api-resources --namespaced=true --no-headers -o name | egrep -v 'events|nodes' | paste -s -d, - ) --no-headers
