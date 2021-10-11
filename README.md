@@ -14,6 +14,12 @@ yum install bash-completion
 echo 'source <(kubectl completion bash)' >>~/.bashrc
 ```
 
+## Using minikube
+```
+minikube start --driver=docker  --nodes 2
+minikube stop
+```
+
 ____________________________________________________________________________________________________
 ## Initialize a kube cluster
 * https://github.com/davidboukari/vmware/edit/main/kubernetes/README.md (vmare-tanzu-kubernetes-cluster doc)
