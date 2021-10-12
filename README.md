@@ -58,6 +58,19 @@ kubectl config use-context my-vsphere-cluster-admin@my-vsphere-cluster
 tkg scale cluster my-vsphere-cluster --worker-machine-count 4  --namespace tkg-system
 ```
 
+## Context
+```
+$ kubectl config get-clusters
+NAME
+multinode-demo
+
+$ kubectl config get-contexts
+CURRENT   NAME             CLUSTER          AUTHINFO         NAMESPACE
+*         multinode-demo   multinode-demo   multinode-demo   default
+
+kubectl config use-context my-vsphere-cluster-admin@my-vsphere-cluster
+```
+
 ## Namespace
 ```
 kubectl config get-contexts
