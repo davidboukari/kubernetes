@@ -210,6 +210,10 @@ kubectl port-forward nginx 8080:80
 kubectl run -it test image=alpine 
 apk add -u curl
 ```
+
+## Services 
+* https://medium.com/google-cloud/kubernetes-nodeport-vs-loadbalancer-vs-ingress-when-should-i-use-what-922f010849e0
+
 ____________________________________________________________________________________________________
 ###  Kubernetes Services Objects
 kube-proxy is available on each pod and it manage the Load Balancing (userspace, iptables, ipvs)
