@@ -18,8 +18,14 @@ echo 'source <(kubectl completion bash)' >>~/.bashrc
 ```
 minikube start --nodes 2 -p multinode-demo
 minikube stop
+
 ```
 
+### Destroy minikube clusters
+```
+minikube delete --all
+🔥  Suppression de "minikube" dans docker...
+```
 ____________________________________________________________________________________________________
 ## Initialize a kube cluster
 * https://github.com/davidboukari/vmware/edit/main/kubernetes/README.md (vmare-tanzu-kubernetes-cluster doc)
