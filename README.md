@@ -16,7 +16,7 @@ echo 'source <(kubectl completion bash)' >>~/.bashrc
 
 ## Using minikube
 ```
-minikube start --driver=docker  --nodes 2
+minikube start --nodes 2 -p multinode-demo
 minikube stop
 ```
 
