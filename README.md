@@ -216,6 +216,29 @@ apk add -u curl
 * Pod consume -> PVC Persistant Volume Claim (Perisitant Volume Request) -> PV ( Storage )
 * Create the PV -> Create the PVC (Request) -> Associate the PVC to the pod  
 
+```
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-dijon-fr
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 3Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/data-pv"
+
+$ kubectl -n dev get persistentvolume -o wide
+NAME          CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS      CLAIM   STORAGECLASS   REASON   AGE   VOLUMEMODE
+pv-dijon-fr   3Gi        RWO            Retain           Available           manual                  16s   Filesystem
+```
+
+
+
 
 * EmptyDir
 ```
