@@ -212,6 +212,11 @@ apk add -u curl
 ```
 
 ## Volumes
+
+* Pod consume -> PVC Persistant Volume Claim (Perisitant Volume Request) -> PV ( Storage )
+* Create the PV -> Create the PVC (Request) -> Associate the PVC to the pod  
+
+
 * EmptyDir
 ```
 apiVersion: v1
