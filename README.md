@@ -211,6 +211,37 @@ kubectl run -it test image=alpine
 apk add -u curl
 ```
 
+## Volumes
+* EmptyDir
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-volume-emptydir-dijon-fr
+  labels:
+    app: nginx
+    env: dev
+spec:
+  containers:
+  - name: nginx-volume-emptydir-dijon-fr
+    image: nginx
+    volumeMounts:
+    - name: nginx-volume-emptydir-dijon-fr
+      mountPath:  /data/db
+    ports:
+    - containerPort: 80
+    env:
+    - name: NGINX_PASSWORD
+      value: mysecretpassword
+  volumes:
+  - name: nginx-volume-emptydir-dijon-fr
+    emptyDir: {}
+```
+
+
+
+
+
 ## Services 
 * https://medium.com/google-cloud/kubernetes-nodeport-vs-loadbalancer-vs-ingress-when-should-i-use-what-922f010849e0
 
