@@ -213,9 +213,11 @@ apk add -u curl
 
 ## Volumes
 
+### Method 1: PV <- PVC <- POD 
 * Pod consume -> PVC Persistant Volume Claim (Perisitant Volume Request) -> PV ( Storage )
 * Create the PV -> Create the PVC (Request) -> Associate the PVC to the pod  
 
+Create a pv
 ```
 apiVersion: v1
 kind: PersistentVolume
@@ -237,9 +239,55 @@ NAME          CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS      CLAIM   STO
 pv-dijon-fr   3Gi        RWO            Retain           Available           manual                  16s   Filesystem
 ```
 
+* Create the pvc associate to the pv
+```
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-dijon-fr
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 3Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/data-pv"
 
+kubectl -n dev get pvc
+NAME           STATUS    VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+pvc-dijon-fr   Pending                                      manual         10s
+```
 
-
+* Create the Pod
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pv-dijon-fr
+  labels:
+    app: nginx
+    env: dev
+spec:
+  containers:
+  - name: nginx-pv-dijon-fr
+    image: nginx
+    volumeMounts:
+    - name: nginx-pv-dijon-fr
+      mountPath: /data-db-nginx
+    ports:
+    - containerPort: 80
+    env:
+    - name: NGINX_PASSWORD
+      value: mysecretpassword
+  volumes:
+  - name: nginx-pv-dijon-fr
+    persistentVolumeClaim:
+      claimName: pvc-dijon-fr
+```
+### Method 2: Empty directory
 * EmptyDir
 ```
 apiVersion: v1
@@ -266,7 +314,7 @@ spec:
     emptyDir: {}
 ```
 
-* Directory on the kube hosts
+### Method 3: Directory on the kube hosts
 ```
 apiVersion: v1
 kind: Pod
