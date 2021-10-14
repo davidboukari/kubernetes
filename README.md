@@ -238,6 +238,34 @@ spec:
     emptyDir: {}
 ```
 
+* Directory on the kube hosts
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-volume-directory-dijon-fr
+  labels:
+    app: nginx
+    env: dev
+spec:
+  containers:
+  - name: nginx-volume-directory-dijon-fr
+    image: nginx
+    volumeMounts:
+    - name: nginx-volume-directory-dijon-fr-1
+      mountPath:  /data-db-nginx
+    ports:
+    - containerPort: 80
+    env:
+    - name: NGINX_PASSWORD
+      value: mysecretpassword
+  volumes:
+  - name: nginx-volume-directory-dijon-fr-1
+    hostPath:
+      path: /data-db
+      #type: Directory
+      type: DirectoryOrCreate
+```
 
 
 
