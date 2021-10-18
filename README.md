@@ -8,6 +8,13 @@ ________________________________________________________________________________
 iptable -F
 
 ____________________________________________________________________________________________________
+## Install docker
+```
+sudo yum install docker
+sudo systemctl enable podman.socket --now
+sudo usermod -aG docker dboukari
+```
+
 ## Install minikube
 ```
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
