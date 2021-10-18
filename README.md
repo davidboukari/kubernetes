@@ -194,6 +194,12 @@ kubectl label node <nodename> <labelname>-
 kubectl -n dev1 exec -it httpd-ihs-dijon-fr-b5677ffd4-vn9md -- /bin/bash
 ```
 
+### Multi pod use -c containername
+```
+kubectl -n dev exec -it mc1 -c 2nd -- /bin/bash
+```
+
+
 ## get logs
 * Get logs of a pod
 ```
