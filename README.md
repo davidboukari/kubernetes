@@ -194,6 +194,26 @@ kubectl label node <nodename> <labelname>-
 kubectl -n dev1 exec -it httpd-ihs-dijon-fr-b5677ffd4-vn9md -- /bin/bash
 ```
 
+## get logs
+* Get logs of a pod
+```
+kubectl -n dev logs apache-ssl-php-postgres-dijon-fr
+```
+
+* Get logs of a container 
+```
+kubectl -n dev describe pod/apache-ssl-php-postgres-dijon-fr
+...
+  Normal   Pulled     8m47s                  kubelet            Successfully pulled image "mysql:latest" in 1.669358803s
+  Normal   Pulling    8m18s (x4 over 9m53s)  kubelet            Pulling image "mysql:latest"
+  Normal   Pulled     8m17s                  kubelet            Successfully pulled image "mysql:latest" in 1.858603404s
+  Normal   Created    8m15s (x4 over 9m10s)  kubelet            Created container mysql-latest
+  Normal   Started    8m14s (x4 over 9m10s)  kubelet            Started container mysql-latest
+  Warning  BackOff    4m52s (x22 over 9m5s)  kubelet            Back-off restarting failed container
+  
+kubectl --v=8  logs mysql-latest
+```
+
 ## Nodes Managements = master & Workers = none
 ```bash
 $ kubectl get nodes
