@@ -14,6 +14,16 @@ yum install bash-completion
 echo 'source <(kubectl completion bash)' >>~/.bashrc
 ```
 
+## Install minikube
+```
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
+  && chmod +x minikube
+
+sudo mkdir -p /usr/local/bin/
+sudo install minikube /usr/local/bin/
+
+```
+
 ## Using minikube
 * https://minikube.sigs.k8s.io/docs/tutorials/multi_node/
 ```
