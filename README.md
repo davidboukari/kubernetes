@@ -4,6 +4,7 @@
 
 <img width="542" alt="image" src="https://user-images.githubusercontent.com/32338685/138105277-7b5e396a-965d-42d7-943b-c5b4620eb78e.png">
 
+<img width="1236" alt="image" src="https://user-images.githubusercontent.com/32338685/138105538-077485e0-bd6b-41f7-929a-2a1b7480d1ca.png">
 
 
 # create a K3s cluster
