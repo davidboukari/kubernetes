@@ -1,5 +1,11 @@
 # kubernetes
 
+# Diagrams
+
+<img width="542" alt="image" src="https://user-images.githubusercontent.com/32338685/138105277-7b5e396a-965d-42d7-943b-c5b4620eb78e.png">
+
+
+
 # create a K3s cluster
 * https://github.com/davidboukari/kubernetes/blob/main/create-cluster-k3s.md
 
