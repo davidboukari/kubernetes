@@ -598,7 +598,7 @@ spec:
 ```
 
 ## daemonset
-* The deamonset is automatically create on each worker the master also.
+* The deamonset is automatically create 1 container instance on each worker the master also.
 * Ex: fluentd agent, prometheus node exporter, ...
 ```
 apiVersion: apps/v1
