@@ -91,6 +91,7 @@ kubectl config use-context my-vsphere-cluster-admin@my-vsphere-cluster
 tkg scale cluster my-vsphere-cluster --worker-machine-count 4  --namespace tkg-system
 ```
 
+
 ## Context
 ```
 $ kubectl config get-clusters
@@ -151,6 +152,26 @@ kubectl get secret regcred --output=yaml
 
 kubectl -n dev get secret regcred --output="jsonpath={.data.\.dockerconfigjson}" | base64 --decode
 ```
+## list images
+```
+kubernetes-apache-php-postgres]$ kubectl get pods --all-namespaces -o jsonpath="{..image}" |\
+> tr -s '[[:space:]]' '\n' |\
+> sort |\
+> uniq -c
+      2 davbou/apache-ssl-php:0.2
+      2 gcr.io/k8s-minikube/storage-provisioner:v5
+      2 k8s.gcr.io/coredns/coredns:v1.8.4
+      2 k8s.gcr.io/etcd:3.5.0-0
+      6 k8s.gcr.io/fluentd-elasticsearch:1.20
+      2 k8s.gcr.io/kube-apiserver:v1.22.2
+      2 k8s.gcr.io/kube-controller-manager:v1.22.2
+      6 k8s.gcr.io/kube-proxy:v1.22.2
+      2 k8s.gcr.io/kube-scheduler:v1.22.2
+      6 kindest/kindnetd:v20210326-1e038dc5
+      2 nginx:latest
+      2 postgres:latest
+```
+
 ____________________________________________________________________________________________________
 ## To test commands
 * Katacoda: https://www.katacoda.com/courses/kubernetes/playground
@@ -573,6 +594,35 @@ kubectl create configmap nginx-env --from-env-file=./nginx.env
 kubectl create configmap nginx-litteral --from-literal=DOMAIN=thedomain.com --from-literal=HOSTNAME=myhostname
 
 kubectl get cm nginx-config -o yaml
+```
+
+```
+kubectl -n dev  create configmap fileforconfigmap --from-file=fileforconfigmap.txt
+
+kubectl -n dev get cm fileforconfigmap -o yaml
+apiVersion: v1
+data:
+  fileforconfigmap.txt: |
+    MYVAR1=val1
+    MYVAR2=val2
+    MYVAR3=val3
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2021-10-22T16:10:22Z"
+  name: fileforconfigmap
+  namespace: dev
+  resourceVersion: "53570"
+  uid: c1b9d1d1-deb4-4042-a388-8cbfeb00c2ad
+ ```
+
+* Check that the configmap is mounted
+```
+root@apache-ssl-php-postgres-mysql-dijon-fr:/var/www/html# ls /etc/configmapdirectory/
+fileforconfigmap.txt
+root@apache-ssl-php-postgres-mysql-dijon-fr:/var/www/html# cat /etc/configmapdirectory/fileforconfigmap.txt
+MYVAR1=val1
+MYVAR2=val2
+MYVAR3=val3
 ```
 
 ____________________________________________________________________________________________________
