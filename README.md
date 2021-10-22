@@ -6,8 +6,10 @@
 
 <img width="1236" alt="image" src="https://user-images.githubusercontent.com/32338685/138105538-077485e0-bd6b-41f7-929a-2a1b7480d1ca.png">
 
+## Tools
+* https://stelligent.github.io/config-lint/#/install
 
-# create a K3s cluster
+## create a K3s cluster
 * https://github.com/davidboukari/kubernetes/blob/main/create-cluster-k3s.md
 
 ____________________________________________________________________________________________________
@@ -172,7 +174,45 @@ kubernetes-apache-php-postgres]$ kubectl get pods --all-namespaces -o jsonpath="
       2 nginx:latest
       2 postgres:latest
 ```
+* other command
+```
+kubectl get pods --all-namespaces -o jsonpath="{..image}" |tr -s '[[:space:]]' '\n' |sort |uniq -c
+      2 davbou/apache-ssl-php:0.2
+      2 gcr.io/k8s-minikube/storage-provisioner:v5
+      2 k8s.gcr.io/coredns/coredns:v1.8.4
+      2 k8s.gcr.io/etcd:3.5.0-0
+      6 k8s.gcr.io/fluentd-elasticsearch:1.20
+      2 k8s.gcr.io/kube-apiserver:v1.22.2
+      2 k8s.gcr.io/kube-controller-manager:v1.22.2
+      6 k8s.gcr.io/kube-proxy:v1.22.2
+      2 k8s.gcr.io/kube-scheduler:v1.22.2
+      6 kindest/kindnetd:v20210326-1e038dc5
+      2 nginx:latest
+      2 postgres:latest
+```
 
+* Image by pod
+```
+kubectl get pods --all-namespaces -o=jsonpath='{range .items[*]}{"\n"}{.metadata.name}{":\t"}{range .spec.containers[*]}{.image}{", "}{end}{end}' |sort
+
+apache-ssl-php-postgres-mysql-dijon-fr:	nginx:latest, davbou/apache-ssl-php:0.2,
+coredns-78fcd69978-x29g7:	k8s.gcr.io/coredns/coredns:v1.8.4,
+etcd-multinode-demo:	k8s.gcr.io/etcd:3.5.0-0,
+fluentd-elasticsearch-55lt4:	k8s.gcr.io/fluentd-elasticsearch:1.20,
+fluentd-elasticsearch-qw5z6:	k8s.gcr.io/fluentd-elasticsearch:1.20,
+fluentd-elasticsearch-w6ph8:	k8s.gcr.io/fluentd-elasticsearch:1.20,
+kindnet-dlzc9:	kindest/kindnetd:v20210326-1e038dc5,
+kindnet-w676p:	kindest/kindnetd:v20210326-1e038dc5,
+kindnet-wbkns:	kindest/kindnetd:v20210326-1e038dc5,
+kube-apiserver-multinode-demo:	k8s.gcr.io/kube-apiserver:v1.22.2,
+kube-controller-manager-multinode-demo:	k8s.gcr.io/kube-controller-manager:v1.22.2,
+kube-proxy-cjtlw:	k8s.gcr.io/kube-proxy:v1.22.2,
+kube-proxy-cq7kk:	k8s.gcr.io/kube-proxy:v1.22.2,
+kube-proxy-jx9gr:	k8s.gcr.io/kube-proxy:v1.22.2,
+kube-scheduler-multinode-demo:	k8s.gcr.io/kube-scheduler:v1.22.2,
+postgres-dijon-fr:	postgres:latest,
+storage-provisioner:	gcr.io/k8s-minikube/storage-provisioner:v5,
+```
 ____________________________________________________________________________________________________
 ## To test commands
 * Katacoda: https://www.katacoda.com/courses/kubernetes/playground
