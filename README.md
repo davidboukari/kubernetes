@@ -597,6 +597,30 @@ spec:
       name: myconfigmap
 ```
 
+## daemonset
+* The deamonset is automatically create on each worker the master also.
+* Ex: fluentd agent, prometheus node exporter, ...
+```
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: fluentd-elasticsearch
+  labels:
+    k8s-app: fluentd-logging
+spec:
+  selector:
+    matchLabels:
+      name: fluentd-elasticsearch
+  template:
+    metadata:
+      labels:
+        name: fluentd-elasticsearch
+    spec:
+      containers:
+      - name: fluentd-elasticsearch
+        image: k8s.gcr.io/fluentd-elasticsearch:1.20
+```
+
 ____________________________________________________________________________________________________
 * Secret
 generic
