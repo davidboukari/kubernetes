@@ -153,6 +153,7 @@ kubectl get secret regcred --output=yaml
 kubectl -n dev get secret regcred --output="jsonpath={.data.\.dockerconfigjson}" | base64 --decode
 ```
 ## list images
+* https://v1-18.docs.kubernetes.io/docs/tasks/access-application-cluster/list-all-running-container-images/
 ```
 kubernetes-apache-php-postgres]$ kubectl get pods --all-namespaces -o jsonpath="{..image}" |\
 > tr -s '[[:space:]]' '\n' |\
