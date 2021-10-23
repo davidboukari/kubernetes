@@ -155,6 +155,14 @@ kubectl get secret regcred --output=yaml
 
 kubectl -n dev get secret regcred --output="jsonpath={.data.\.dockerconfigjson}" | base64 --decode
 ```
+
+### Secret
+```
+kubectl create secret generic db-user-pass --from-file=./username.txt --from-file=./password.txt
+
+```
+
+
 ## list images
 * https://v1-18.docs.kubernetes.io/docs/tasks/access-application-cluster/list-all-running-container-images/
 ```
