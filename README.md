@@ -294,6 +294,33 @@ my-vsphere-cluster-md-0-686fc88ccd-z4vlw   Ready    <none>   11h   v1.19.1+vmwar
 kubectl label node <nodename> <labelname>-
 ```
 
+## annotation
+* https://jamesdefabia.github.io/docs/user-guide/kubectl/kubectl_annotate/
+```
+kubectl -n dev annotate po apache-http description="my annotaion1"
+
+kubectl -n dev get po -o yaml
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      description: my annotaion1
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"labels":{"app":"apache","env":"dev"},"name":"apache-http","namespace":"dev"},"spec":{"containers":[{"env":[{"name":"APP_COLOR"}],"image":"httpd:latest","name":"apache-http","ports":[{"containerPort":80},{"containerPort":443}],"securityContext":{"privileged":true,"readOnlyRootFilesystem":true},"volumeMounts":[{"mountPath":"/usr/local/apache2/logs","name":"logs"}]}],"volumes":[{"emptyDir":{},"name":"logs"}]}}
+    creationTimestamp: "2021-11-06T19:33:24Z"
+    labels:
+      app: apache
+      env: dev
+    name: apache-http
+    namespace: dev
+    resourceVersion: "1083409"
+    uid: fd022f3e-9ed3-4b43-964c-85cb9d6b547a
+
+```
+
+
 ## Get a terminal
 ```
 kubectl -n dev1 exec -it httpd-ihs-dijon-fr-b5677ffd4-vn9md -- /bin/bash
