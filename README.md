@@ -302,6 +302,14 @@ kubectl -n dev1 exec -it httpd-ihs-dijon-fr-b5677ffd4-vn9md -- /bin/bash
 kubectl -n dev exec -it mc1 -c 2nd -- /bin/bash
 ```
 
+## statefulset
+* https://kubernetes.io/fr/docs/concepts/workloads/controllers/statefulset/
+```
+StatefulSet est l'objet de l'API de charge de travail utilisé pour gérer des applications avec état (stateful).
+
+Gère le déploiement et la mise à l'échelle d'un ensemble de Pods, et fournit des garanties sur l'ordre et l'unicité de ces Pods.
+```
+
 
 ## get logs
 * Get logs of a pod
