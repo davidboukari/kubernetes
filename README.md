@@ -146,6 +146,16 @@ kubectl -n dev api-resources --verbs=list -o name
     Services (Alias : svc) 
 ```
 
+## Edit a pod
+```
+kubectl edit po mypod
+or
+
+kubectl get po mypod -o yaml > pod-definittion.yml
+vim pod-definition.yml
+kubectl apply -f pod-definition
+```
+
 ## Create a secret for the
 * https://kubernetes.io/fr/docs/tasks/configure-pod-container/pull-image-private-registry/
 
