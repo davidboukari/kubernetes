@@ -337,8 +337,16 @@ kubectl -n dev1 exec -it httpd-ihs-dijon-fr-b5677ffd4-vn9md -- /bin/bash
 ```
 
 ### Multi pod use -c containername
+
+* get logs
 ```
-kubectl -n dev exec -it mc1 -c 2nd -- /bin/bash
+kubectl -n dev logs podmulticontainer -c container1 
+kubectl -n dev logs -f podmulticontainer -c container1 
+```
+
+* exec a command
+```
+kubectl -n dev exec -it podmulticontainer -c container1-- /bin/bash
 ```
 
 ## statefulset
