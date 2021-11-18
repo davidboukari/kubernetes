@@ -172,6 +172,11 @@ kubectl create secret generic db-user-pass --from-file=./username.txt --from-fil
 
 ```
 
+## Liveness
+* Should destroy and create a new pod for example the FS is full and will never clean the space
+
+## Readness
+* Should wait that a service will be up as for example an external service db, vault, or a threat consum  100% CPU, should wait the end 
 
 ## list images
 * https://v1-18.docs.kubernetes.io/docs/tasks/access-application-cluster/list-all-running-container-images/
