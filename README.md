@@ -156,6 +156,13 @@ vim pod-definition.yml
 kubectl apply -f pod-definition
 ```
 
+## Delete a pod or resources
+```
+kubectl delete po mypod
+
+kubectl delete -f deployment.yml
+```
+
 ## Create a secret for the
 * https://kubernetes.io/fr/docs/tasks/configure-pod-container/pull-image-private-registry/
 
