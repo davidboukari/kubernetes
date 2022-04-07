@@ -52,6 +52,8 @@ echo 'source <(kubectl completion bash)' >>~/.bashrc
 ## Using minikube
 * https://minikube.sigs.k8s.io/docs/tutorials/multi_node/
 ```
+yum install docker-ce
+
 minikube start --nodes 2 -p multinode-demo --driver=docker
 minikube stop multinode-demo
 minikube delete multinode-demo
