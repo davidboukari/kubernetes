@@ -30,3 +30,19 @@ value1
 ```
 
 
+```
+kubectl -n kube-system get pods
+NAME                                     READY   STATUS    RESTARTS   AGE
+coredns-78fcd69978-vz5x4                 1/1     Running   0          34s
+etcd-multinode-demo                      1/1     Running   0          64s
+kindnet-dswmx                            1/1     Running   0          24s
+kindnet-jj8fw                            1/1     Running   0          34s
+kube-apiserver-multinode-demo            1/1     Running   0          62s
+kube-controller-manager-multinode-demo   1/1     Running   0          62s
+kube-proxy-dbvq2                         1/1     Running   0          24s
+kube-proxy-spqvt                         1/1     Running   0          34s
+kube-scheduler-multinode-demo            1/1     Running   0          64s
+storage-provisioner                      1/1     Running   0          61s
+
+
+```
