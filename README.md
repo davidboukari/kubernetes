@@ -55,6 +55,11 @@ echo 'source <(kubectl completion bash)' >>~/.bashrc
 yum install docker-ce
 
 minikube start --nodes 2 -p multinode-demo --driver=docker
+
+if root issues use --force if you want to use the driver with root account
+
+minikube start --nodes 2 -p multinode-demo --driver=docker --force
+
 minikube stop multinode-demo
 minikube delete multinode-demo
 
