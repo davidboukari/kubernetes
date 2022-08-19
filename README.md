@@ -63,9 +63,9 @@ echo 'source <(kubectl completion bash)' >>~/.bashrc
 
 # start minikube
 read -p "Start minikube (y/n)?" key
-echo "key=$key"
+echo "key=\$key"
 
-if [ "$key" = "y" ];then
+if [ "\$key" = "y" ];then
   eccho 'minikube start --nodes 2 -p multinode-demo --driver=docker --force'
   minikube start --nodes 2 -p multinode-demo --driver=docker --force
 fi
