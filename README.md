@@ -65,7 +65,8 @@ read -p "Start minikube (y/n)?" key
 echo "key=$key"
 
 if [ "$key" = "y" ];then
- minikube start --nodes 2 -p multinode-demo --driver=docker --force
+  eccho 'minikube start --nodes 2 -p multinode-demo --driver=docker --force'
+  minikube start --nodes 2 -p multinode-demo --driver=docker --force
 fi
 EOF
 
