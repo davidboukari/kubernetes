@@ -35,6 +35,46 @@ sudo install minikube /usr/local/bin/
 
 ```
 
+## Install minikube script
+```
+cat<<EOF>install_kube.sh 
+#!/bin/bash
+
+# minikube
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
+  && chmod +x minikube
+sudo mkdir -p /usr/local/bin/
+sudo install minikube /usr/local/bin/
+
+# kubectl
+curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+
+chmod +x ./kubectl
+cp ./kubectl /usr/local/bin
+
+# bach completion
+if which apk; then
+  apk add bash-completion
+elif which yum; then
+ yum install bash-completion 
+fi
+echo 'source <(kubectl completion bash)' >>~/.bashrc
+
+# start minikube
+read -p "Start minikube (y/n)?" key
+
+if [ "$key" = "y" ];then
+ minikube start --nodes 2 -p multinode-demo --driver=docker --force
+fi
+EOF
+
+chmod +x install_kube.sh 
+./install_kube.sh
+. ~/.bashrc
+
+```
+
+
 ## Install kubectl
 ```
 curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
