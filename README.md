@@ -37,7 +37,8 @@ sudo install minikube /usr/local/bin/
 
 ## Install minikube script
 ```
-cat<<EOF>install_kube.sh 
+rm -f install_kube.sh 
+cat<<EOF>>install_kube.sh 
 #!/bin/bash
 
 # minikube
