@@ -78,6 +78,20 @@ chmod +x install_kube.sh
 ```
 
 
+* minikube set default profile
+```
+ minikube profile list
+|----------------|-----------|---------|--------------|------|---------|---------|-------|
+|    Profile     | VM Driver | Runtime |      IP      | Port | Version | Status  | Nodes |
+|----------------|-----------|---------|--------------|------|---------|---------|-------|
+| multinode-demo | docker    | docker  | 192.168.85.2 | 8443 | v1.22.2 | Running |     2 |
+|----------------|-----------|---------|--------------|------|---------|---------|-------|
+
+minikube profile multinode-demo
+?  Le profil de minikube a été défini avec succès sur multinode-demo
+```
+
+
 ## Install kubectl
 ```
 curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
