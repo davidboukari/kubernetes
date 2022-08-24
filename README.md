@@ -62,7 +62,8 @@ fi
 echo 'source <(kubectl completion bash)' >>~/.bashrc
 
 # start minikube
-read -p "Start minikube (y/n)?" key
+#read -p "Start minikube (y/n)?" key
+key="y"
 echo "key=\$key"
 
 if [ "\$key" = "y" ];then
