@@ -57,7 +57,9 @@ cp ./kubectl /usr/local/bin
 if which apk; then
   apk add bash-completion
 elif which yum; then
- yum install bash-completion 
+ yum install bash-completion -y
+elif which yum; then
+ apt install bash-completion -y
 fi
 echo 'source <(kubectl completion bash)' >>~/.bashrc
 
