@@ -1356,6 +1356,7 @@ yum install openssl -y
 ./get_helm.sh
 helm version
 
+helm repo list
 
 helm create mychart
 helm install mychart --dry-run --debug ./mychart
