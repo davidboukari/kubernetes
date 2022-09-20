@@ -72,7 +72,8 @@ if [ "\$key" = "y" ];then
   echo 'minikube start --nodes 2 -p multinode-demo --driver=docker --force'
   #minikube start --nodes 2 -p multinode-demo --driver=docker --force  --network-plugin=cni  
   #minikube start --nodes 2 -p multinode-demo --driver=docker --force --cni calico
-  minikube start --nodes 2 -p multinode-demo --driver=docker --force --network-plugin=cni --enable-default-cni
+  #minikube start --nodes 2 -p multinode-demo --driver=docker --force --network-plugin=cni --enable-default-cni
+  minikube start --nodes 2 -p multinode-demo --driver=docker --force --network-plugin=cni --cni=bridge
 fi
 EOF
 
