@@ -69,9 +69,10 @@ key="y"
 echo "key=\$key"
 
 if [ "\$key" = "y" ];then
-  eccho 'minikube start --nodes 2 -p multinode-demo --driver=docker --force'
+  echo 'minikube start --nodes 2 -p multinode-demo --driver=docker --force'
   #minikube start --nodes 2 -p multinode-demo --driver=docker --force  --network-plugin=cni  
-  minikube start --nodes 2 -p multinode-demo --driver=docker --force --cni calico
+  #minikube start --nodes 2 -p multinode-demo --driver=docker --force --cni calico
+  minikube start --nodes 2 -p multinode-demo --driver=docker --force --network-plugin=cni --enable-default-cni
 fi
 EOF
 
@@ -80,6 +81,8 @@ chmod +x install_kube.sh
 . ~/.bashrc
 
 ```
+
+
 
 
 * minikube set default profile
