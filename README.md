@@ -70,7 +70,7 @@ echo "key=\$key"
 
 if [ "\$key" = "y" ];then
   eccho 'minikube start --nodes 2 -p multinode-demo --driver=docker --force'
-  minikube start --nodes 2 -p multinode-demo --driver=docker --force
+  minikube start --nodes 2 -p multinode-demo --driver=docker --force --network-plugin=cni
 fi
 EOF
 
